@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="radio" id="animal" value="Animal" v-model="loveType" />
+      <label for="animal">Animal</label>
+      <input type="radio" id="flower" value="Flower" v-model="loveType" />
+      <label for="flower">Flower</label><br />
+
+      <input type="checkbox" id="dog" value="Dog" v-model="loveList" />
+      <label for="dog">Dog</label>
+      <input type="checkbox" id="cat" value="Cat" v-model="loveList" />
+      <label for="cat">Cat</label>
+      <input type="checkbox" id="fish" value="Fish" v-model="loveList" />
+      <label for="fish">Fish</label><br />
+
+      <input type="checkbox" id="rose" value="Rose" v-model="loveList" />
+      <label for="rose">Rose</label>
+      <input type="checkbox" id="lotus" value="Lotus" v-model="loveList" />
+      <label for="lotus">Lotus</label>
+      <input type="checkbox" id="mali" value="Mali" v-model="loveList" />
+      <label for="mali">Mali</label><br />
+
+      <span>love Type : {{ loveType }}</span><br>
+      <span>love List : {{ loveList }}</span>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          loveType: "",
+          loveList: []
+        },
+
+        computer: {},
+
+        watch: {}
+      });
+    </script>
+  </body>
+</html>
