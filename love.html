@@ -9,27 +9,36 @@
   </head>
   <body>
     <div id="app">
-      <input type="radio" id="animal" value="Animal" v-model="loveType" />
+      <input type="radio" id="animal" value="animal" v-model="loveType" />
       <label for="animal">Animal</label>
-      <input type="radio" id="flower" value="Flower" v-model="loveType" />
+      <input type="radio" id="flower" value="flower" v-model="loveType" />
       <label for="flower">Flower</label><br />
 
-      <input type="checkbox" id="dog" value="Dog" v-model="loveList" />
-      <label for="dog">Dog</label>
-      <input type="checkbox" id="cat" value="Cat" v-model="loveList" />
-      <label for="cat">Cat</label>
-      <input type="checkbox" id="fish" value="Fish" v-model="loveList" />
-      <label for="fish">Fish</label><br />
+      <template v-if="isLoveTypeAnimal">
+        <div>
+          <input type="checkbox" id="dog" value="Dog" v-model="loveList" />
+          <label for="dog">Dog</label>
+          <input type="checkbox" id="cat" value="Cat" v-model="loveList" />
+          <label for="cat">Cat</label>
+          <input type="checkbox" id="fish" value="Fish" v-model="loveList" />
+          <label for="fish">Fish</label><br />
+        </div>
+      </template>
 
-      <input type="checkbox" id="rose" value="Rose" v-model="loveList" />
-      <label for="rose">Rose</label>
-      <input type="checkbox" id="lotus" value="Lotus" v-model="loveList" />
-      <label for="lotus">Lotus</label>
-      <input type="checkbox" id="mali" value="Mali" v-model="loveList" />
-      <label for="mali">Mali</label><br />
+      <template v-if="isLoveTypeFlower">
+        <div>
+          <input type="checkbox" id="rose" value="Rose" v-model="loveList" />
+          <label for="rose">Rose</label>
+          <input type="checkbox" id="lotus" value="Lotus" v-model="loveList" />
+          <label for="lotus">Lotus</label>
+          <input type="checkbox" id="mali" value="Mali" v-model="loveList" />
+          <label for="mali">Mali</label><br />
+        </div>
+      </template>
 
-      <span>love Type : {{ loveType }}</span><br>
-      <span>love List : {{ loveList }}</span>
+      <span>love Type : {{ loveType }}</span><br />
+      <span>love List : {{ loveList }}</span><br />
+      <span>love List Length: {{ getLoverListLength }}</span><br />
     </div>
     <script>
       var app = new Vue({
@@ -39,9 +48,24 @@
           loveList: []
         },
 
-        computer: {},
+        computed: {
+            getLoverListLength:function(){
+                return this.loveList.length;
+            },
+            isLoveTypeAnimal:function(){
+                return this.loveType=='animal'
+            },
+            isLoveTypeFlower:function(){
+                return this.loveType=='flower'
+            }
+            
+        },
 
-        watch: {}
+        watch: {
+          loveType: function(newValue, oldValue) {
+            this.loveList = [];
+          }
+        }
       });
     </script>
   </body>
