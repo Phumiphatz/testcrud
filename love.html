@@ -43,7 +43,12 @@
       </template>
 
       <span>love Type : {{ loveType }}</span><br />
-      <span>love List : {{ loveList }}</span><br />
+      <span>love List : <span v-if="loveList.length==0">Nothing</span></span></span><br />
+      <ul>
+          <li v-for="love in loveList">
+              {{love}}
+          </li>
+        </ul>
       <span>love List Length: {{ getLoverListLength }}</span><br />
     </div>
     <script>
