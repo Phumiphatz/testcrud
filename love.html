@@ -25,7 +25,7 @@
         </div>
       </template>
 
-      <template v-if="isLoveTypeFlower">
+      <template v-else-if="isLoveTypeFlower">
         <div>
           <input type="checkbox" id="rose" value="Rose" v-model="loveList" />
           <label for="rose">Rose</label>
@@ -34,6 +34,12 @@
           <input type="checkbox" id="mali" value="Mali" v-model="loveList" />
           <label for="mali">Mali</label><br />
         </div>
+      </template>
+
+      <template v-else>
+          <div>
+              Please select one!!
+          </div>
       </template>
 
       <span>love Type : {{ loveType }}</span><br />
