@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button
+        v-for="color in colors"
+        v-bind:style="{backgroundColor: color}"
+        v-on:click="addBox(color)"
+      >
+        {{ color }}
+      </button>
+      <template v-if="boxes.length==0">
+        <div>
+          No Box
+        </div>
+      </template>
+      <template v-else>
+        <div
+          v-for="(box,index) in boxes"
+          v-bind:key="box.id"
+          v-bind:style="{
+            position:'relative',
+            width:'150px',
+            borderStyle:'solid',
+            borderWidth:'1px',
+            backgroundColor:box.color
+        }"
+        >
+          {{box.id}}.{{box.color}}
+          <span style="position: absolute; right: 0;">
+            <button v-on:click="delBox(index)">-</button>
+            <button v-if="index!=0" v-on:click="upBox(index)">^</button>
+            <button v-if="index!=boxes.length-1" v-on:click="downBox(index)">
+              v
+            </button>
+          </span>
+        </div>
+      </template>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          lastId: 0,
+          colors: ["red", "green", "blue", "pink", "yellow", "white"],
+          selectColor: "",
+          boxes: []
+        },
+        methods: {
+          addBox: function(color) {
+            this.boxes.push({
+              id: this.lastId++,
+              color: color
+            });
+          },
+          delBox: function(index) {
+            this.boxes.splice(index, 1);
+          },
+          upBox: function(index) {
+            var temp = [this.boxes[index - 1], this.boxes[index]];
+            this.boxes.splice(index - 1, 2, temp[1], temp[0]);
+          },
+          downBox: function(index) {
+            var temp = [this.boxes[index], this.boxes[index+1]];
+            this.boxes.splice(index, 2, temp[1], temp[0]);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
